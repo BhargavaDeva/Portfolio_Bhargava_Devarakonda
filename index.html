@@ -1,672 +1,422 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhargava Devarakonda | DevOps Engineer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Bhargava Devarakonda | Cloud DevOps Engineer</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#050d1a;
+    --bg2:#071222;
+    --surface:#0a1929;
+    --card:#0d2137;
+    --card2:#102848;
+    --border:#1a3a5c;
+    --border2:#1e4976;
+    --azure:#0078d4;
+    --azure-light:#50b0ff;
+    --azure-bright:#60cdff;
+    --blue-glow:#005a9e;
+    --sky:#bde3ff;
+    --white:#f0f6ff;
+    --muted:#5a8aaa;
+    --muted2:#7aaac8;
+    --green:#22c55e;
+    --orange:#f59e0b;
+    --purple:#818cf8;
+    --text:#d6eaf8;
+    --font:'Segoe UI',system-ui,sans-serif;
+    --mono:'Cascadia Code','Fira Code','Consolas',monospace;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden}
+  ::-webkit-scrollbar{width:5px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--azure);border-radius:3px}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
+  /* ── NAV ── */
+  nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(5,13,26,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.85rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
+  .logo{display:flex;align-items:center;gap:.7rem}
+  .logo-icon{width:28px;height:28px;background:linear-gradient(135deg,var(--azure),var(--azure-bright));border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:#fff;font-family:var(--mono)}
+  .logo-text{font-family:var(--mono);font-size:.9rem;color:var(--azure-light);letter-spacing:.04em}
+  .logo-text span{color:var(--muted2)}
+  .nav-links{display:flex;gap:2.5rem;list-style:none}
+  .nav-links a{color:var(--muted2);text-decoration:none;font-size:.8rem;letter-spacing:.07em;text-transform:uppercase;transition:color .2s;position:relative}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--azure-bright);transition:width .25s}
+  .nav-links a:hover{color:var(--azure-bright)}
+  .nav-links a:hover::after{width:100%}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+  /* ── HERO ── */
+  #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:6rem 2rem 4rem}
+  
+  /* Azure-style diagonal bg stripes */
+  .hero-bg{position:absolute;inset:0;overflow:hidden}
+  .hero-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#050d1a 0%,#071525 60%,#050d1a 100%)}
+  .hero-bg::after{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(0,120,212,.18) 0%,rgba(0,120,212,.06) 40%,transparent 70%);pointer-events:none}
+  .orb-bottom{position:absolute;bottom:-150px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(0,90,158,.12) 0%,transparent 65%);pointer-events:none}
+  
+  /* Blueprint grid lines */
+  .blueprint-grid{position:absolute;inset:0;opacity:.07;background-image:linear-gradient(var(--azure) 1px,transparent 1px),linear-gradient(90deg,var(--azure) 1px,transparent 1px);background-size:60px 60px}
+  .blueprint-grid2{position:absolute;inset:0;opacity:.03;background-image:linear-gradient(var(--azure-bright) 1px,transparent 1px),linear-gradient(90deg,var(--azure-bright) 1px,transparent 1px);background-size:12px 12px}
 
-        /* Header/Hero Section */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 80px 0;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        }
+  .hero-inner{position:relative;z-index:1;max-width:960px;width:100%;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center}
+  @media(max-width:700px){.hero-inner{grid-template-columns:1fr}}
 
-        .hero h1 {
-            font-size: 3.5em;
-            color: #667eea;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
+  .hero-left{}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;background:rgba(0,120,212,.12);border:1px solid rgba(0,120,212,.35);border-radius:20px;padding:.35rem 1rem;font-size:.75rem;color:var(--azure-light);font-family:var(--mono);margin-bottom:1.2rem;letter-spacing:.06em}
+  .eyebrow-dot{width:6px;height:6px;background:var(--azure-bright);border-radius:50%;animation:pulse-dot 2s ease-in-out infinite}
+  @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
 
-        .hero .title {
-            font-size: 1.5em;
-            color: #764ba2;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
+  .hero-name{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:700;color:var(--white);letter-spacing:-.03em;line-height:1.1;margin-bottom:.5rem}
+  .hero-name em{font-style:normal;background:linear-gradient(90deg,var(--azure),var(--azure-bright));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero-title{font-size:clamp(.9rem,2vw,1.05rem);color:var(--muted2);margin-bottom:1.2rem;font-weight:400;line-height:1.5}
 
-        .hero .location {
-            font-size: 1em;
-            color: #666;
-            margin-bottom: 30px;
-        }
+  .work-auth{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.25);border-radius:5px;padding:.38rem .85rem;font-size:.75rem;color:#fbbf24;margin-bottom:1.4rem;font-family:var(--mono)}
 
-        .hero p {
-            font-size: 1.1em;
-            color: #555;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            line-height: 1.8;
-        }
+  .hero-desc{color:var(--muted2);max-width:580px;font-size:.93rem;line-height:1.75;margin-bottom:1.8rem}
+  .hero-desc strong{color:var(--sky)}
 
-        .social-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-        }
+  .btn-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2rem}
+  .btn{padding:.7rem 1.5rem;border-radius:4px;font-size:.83rem;font-weight:600;text-decoration:none;letter-spacing:.04em;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+  .btn-primary{background:linear-gradient(135deg,var(--azure),#005fa3);color:#fff;border:1px solid var(--azure)}
+  .btn-primary:hover{background:linear-gradient(135deg,var(--azure-light),var(--azure));transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,120,212,.35)}
+  .btn-ghost{background:transparent;color:var(--azure-light);border:1px solid var(--border2)}
+  .btn-ghost:hover{background:rgba(0,120,212,.1);border-color:var(--azure-light);transform:translateY(-2px)}
 
-        .social-links a {
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
+  /* stat cards */
+  .stat-row{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:1.5rem}
+  .stat{background:linear-gradient(135deg,var(--card),var(--card2));border:1px solid var(--border);border-radius:8px;padding:.7rem 1.1rem;display:flex;align-items:center;gap:.7rem;position:relative;overflow:hidden}
+  .stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--azure),var(--azure-bright))}
+  .stat-num{font-family:var(--mono);font-size:1.4rem;font-weight:700;color:var(--azure-bright)}
+  .stat-label{font-size:.73rem;color:var(--muted2);line-height:1.3}
 
-        .social-links a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
+  /* hero right — azure services card */
+  .hero-right{}
+  .services-card{background:linear-gradient(160deg,var(--card),var(--card2));border:1px solid var(--border2);border-radius:10px;padding:1.4rem;min-width:220px}
+  .services-title{font-family:var(--mono);font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+  .services-title::before{content:'';display:inline-block;width:8px;height:8px;background:var(--azure);border-radius:2px}
+  .svc-item{display:flex;align-items:center;gap:.7rem;padding:.5rem .6rem;border-radius:5px;margin-bottom:.35rem;border:1px solid transparent;transition:all .2s;cursor:default}
+  .svc-item:hover{background:rgba(0,120,212,.08);border-color:var(--border)}
+  .svc-icon{width:28px;height:28px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0}
+  .svc-name{font-size:.78rem;color:var(--sky);font-weight:500}
+  .svc-sub{font-size:.65rem;color:var(--muted);font-family:var(--mono)}
 
-        /* Main Content */
-        main {
-            background: white;
-            margin: 40px auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
+  /* pipeline strip */
+  .pipeline-wrap{margin-top:.5rem}
+  .pipeline-label{font-family:var(--mono);font-size:.67rem;color:var(--muted2);margin-bottom:.55rem;text-transform:uppercase;letter-spacing:.1em}
+  .pipeline{display:flex;align-items:center;overflow-x:auto;padding-bottom:.3rem;gap:0}
+  .pipeline::-webkit-scrollbar{height:3px}
+  .pipe-step{background:var(--card2);border:1px solid var(--border);border-radius:4px;padding:.32rem .7rem;font-family:var(--mono);font-size:.66rem;white-space:nowrap}
+  .pipe-step.done{border-color:#166534;color:var(--green);background:rgba(34,197,94,.05)}
+  .pipe-step.active{border-color:var(--azure);color:var(--azure-bright);background:rgba(0,120,212,.08);animation:pulse-pipe 1.8s ease-in-out infinite}
+  .pipe-step.pending{color:var(--muted)}
+  @keyframes pulse-pipe{0%,100%{box-shadow:0 0 0 0 rgba(0,120,212,.3)}50%{box-shadow:0 0 0 4px rgba(0,120,212,.08)}}
+  .pipe-arrow{color:var(--border2);margin:0 .22rem;font-size:.75rem}
 
-        section {
-            padding: 60px 80px;
-            border-bottom: 1px solid #eee;
-        }
+  .bottom-chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem}
+  .chip{font-family:var(--mono);font-size:.67rem;padding:.22rem .65rem;border-radius:3px;border:1px solid}
+  .chip.az{color:var(--azure-light);border-color:rgba(0,120,212,.3);background:rgba(0,120,212,.07)}
+  .chip.g{color:var(--green);border-color:rgba(34,197,94,.25);background:rgba(34,197,94,.05)}
+  .chip.o{color:#fbbf24;border-color:rgba(245,158,11,.25);background:rgba(245,158,11,.05)}
+  .chip.p{color:var(--purple);border-color:rgba(129,140,248,.25);background:rgba(129,140,248,.05)}
 
-        section:last-child {
-            border-bottom: none;
-        }
+  /* ── SECTIONS ── */
+  section.content{padding:5rem 2rem;max-width:960px;margin:0 auto}
+  .section-header{display:flex;align-items:center;gap:1.2rem;margin-bottom:2.5rem}
+  .section-tag{font-family:var(--mono);font-size:.67rem;color:var(--azure-bright);background:rgba(0,120,212,.1);border:1px solid rgba(0,120,212,.25);padding:.22rem .7rem;border-radius:3px;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+  .section-line{flex:1;height:1px;background:linear-gradient(to right,var(--border2),transparent)}
+  h2{font-size:1.5rem;font-weight:700;color:var(--white)}
 
-        h2 {
-            font-size: 2.5em;
-            color: #667eea;
-            margin-bottom: 40px;
-            position: relative;
-            padding-bottom: 15px;
-        }
+  /* ── EXP CARDS ── */
+  .exp-list{display:flex;flex-direction:column;gap:1.4rem}
+  .exp-card{background:linear-gradient(160deg,var(--card),var(--bg2));border:1px solid var(--border);border-radius:10px;padding:1.6rem 1.8rem;position:relative;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s}
+  .exp-card:hover{border-color:var(--azure);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,120,212,.15)}
+  .exp-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
+  .exp-card.current::before{background:linear-gradient(to bottom,var(--azure-bright),var(--azure))}
+  .exp-card.intern::before{background:linear-gradient(to bottom,var(--purple),var(--azure))}
+  .exp-card.early::before{background:linear-gradient(to bottom,var(--muted),transparent)}
+  /* top accent line */
+  .exp-card.current::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--azure-bright),transparent)}
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 2px;
-        }
+  .exp-role{font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:.18rem}
+  .exp-sub{font-size:.76rem;color:var(--muted2);font-family:var(--mono);margin-bottom:.5rem}
+  .exp-meta{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin-bottom:.3rem}
+  .exp-company{color:var(--azure-light);font-weight:600;font-size:.88rem}
+  .exp-date{font-family:var(--mono);font-size:.7rem;color:var(--muted2);background:rgba(0,120,212,.08);border:1px solid var(--border);padding:.17rem .55rem;border-radius:3px;white-space:nowrap}
+  .badge-current{font-size:.62rem;background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);padding:.17rem .6rem;border-radius:20px;font-weight:700;letter-spacing:.06em}
 
-        /* Experience Cards */
-        .job {
-            margin-bottom: 50px;
-            padding: 30px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
-            transition: all 0.3s ease;
-        }
+  .exp-bullets{list-style:none;margin-top:.7rem;display:flex;flex-direction:column;gap:.5rem}
+  .exp-bullets li{font-size:.85rem;color:var(--muted2);padding-left:1.2rem;position:relative;line-height:1.65}
+  .exp-bullets li::before{content:'›';position:absolute;left:0;color:var(--azure-bright);font-size:1rem;top:-.05rem;font-weight:700}
+  .exp-bullets li strong{color:var(--sky)}
 
-        .job:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
-        }
+  .env-tiers{display:flex;flex-wrap:wrap;gap:.3rem;margin:.5rem 0 .2rem}
+  .tier{font-family:var(--mono);font-size:.6rem;padding:.15rem .45rem;border-radius:2px;background:rgba(0,120,212,.08);border:1px solid rgba(0,120,212,.2);color:var(--azure-light)}
 
-        .job:last-child {
-            margin-bottom: 0;
-        }
+  .metric-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem}
+  .mc{font-family:var(--mono);font-size:.66rem;padding:.2rem .6rem;border-radius:3px;border:1px solid}
+  .mc.az{color:var(--azure-light);border-color:rgba(0,120,212,.25);background:rgba(0,120,212,.06)}
+  .mc.g{color:var(--green);border-color:rgba(34,197,94,.2);background:rgba(34,197,94,.05)}
+  .mc.p{color:var(--purple);border-color:rgba(129,140,248,.2);background:rgba(129,140,248,.05)}
+  .mc.o{color:#fbbf24;border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)}
 
-        .job h3 {
-            font-size: 1.6em;
-            color: #333;
-            margin-bottom: 8px;
-        }
+  /* ── EDU & CERTS ── */
+  .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-bottom:1.5rem}
+  .edu-card{background:linear-gradient(160deg,var(--card),var(--bg2));border:1px solid var(--border);border-radius:10px;padding:1.4rem 1.6rem;transition:border-color .2s,transform .2s;position:relative;overflow:hidden}
+  .edu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--azure),var(--azure-bright))}
+  .edu-card:hover{border-color:var(--azure);transform:translateY(-2px)}
+  .edu-degree{font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:.25rem}
+  .edu-school{color:var(--azure-light);font-size:.85rem;font-weight:600;margin-bottom:.2rem}
+  .edu-meta{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-bottom:.6rem}
+  .edu-gpa{display:inline-flex;align-items:center;gap:.4rem;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-radius:3px;padding:.18rem .6rem;font-family:var(--mono);font-size:.7rem;color:var(--green);margin-bottom:.5rem}
+  .edu-courses{font-size:.77rem;color:var(--muted);line-height:1.6}
+  .edu-courses span{color:var(--muted2)}
 
-        .job .company {
-            font-size: 1.2em;
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
+  .cert-list{display:flex;flex-direction:column;gap:.8rem}
+  .cert-item{background:linear-gradient(160deg,var(--card),var(--bg2));border:1px solid var(--border);border-radius:8px;padding:1rem 1.4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;transition:border-color .2s,transform .2s}
+  .cert-item:hover{border-color:var(--azure);transform:translateY(-2px)}
+  .cert-name{font-size:.9rem;font-weight:600;color:var(--white)}
+  .cert-issuer{font-size:.75rem;color:var(--muted);margin-top:.1rem}
+  .cert-status{font-family:var(--mono);font-size:.67rem;padding:.2rem .65rem;border-radius:20px}
+  .cert-status.done{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.25)}
+  .cert-status.wip{background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.25)}
 
-        .job .date {
-            font-size: 0.95em;
-            color: #666;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .job ul {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        .job ul li {
-            padding: 8px 0 8px 25px;
-            position: relative;
-            color: #444;
-            line-height: 1.7;
-        }
-
-        .job ul li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-            font-size: 1.3em;
-        }
-
-        /* Skills Section with Visual Bars */
-        .skills-visual {
-            margin-bottom: 50px;
-        }
-
-        .skill-item {
-            margin-bottom: 25px;
-        }
-
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .skill-name {
-            font-weight: 600;
-            color: #333;
-            font-size: 1.1em;
-        }
-
-        .skill-level {
-            color: #667eea;
-            font-weight: 600;
-        }
-
-        .skill-bar-container {
-            background: #e0e0e0;
-            border-radius: 10px;
-            height: 12px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .skill-bar {
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 10px;
-            transition: width 1.5s ease;
-            position: relative;
-        }
-
-        .skill-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .skills-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .skill-tag-group {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-            border-radius: 12px;
-            border-top: 3px solid #667eea;
-        }
-
-        .skill-tag-group h3 {
-            color: #667eea;
-            margin-bottom: 12px;
-            font-size: 1.2em;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .skill-tag {
-            background: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            color: #555;
-            border: 1px solid #ddd;
-        }
-
-        /* Education Section */
-        .education-item {
-            margin-bottom: 30px;
-            padding: 25px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 15px;
-            border-left: 5px solid #764ba2;
-        }
-
-        .education-item h3 {
-            color: #333;
-            font-size: 1.4em;
-            margin-bottom: 8px;
-        }
-
-        .education-item .school {
-            color: #764ba2;
-            font-weight: 600;
-            font-size: 1.1em;
-            margin-bottom: 5px;
-        }
-
-        .education-item .date {
-            color: #666;
-            font-size: 0.95em;
-            margin-bottom: 10px;
-        }
-
-        .education-item .gpa {
-            color: #555;
-            font-weight: 600;
-            margin-top: 10px;
-        }
-
-        /* Certifications */
-        .cert {
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border-left: 5px solid #667eea;
-        }
-
-        .cert h3 {
-            color: #333;
-            font-size: 1.2em;
-            margin-bottom: 5px;
-        }
-
-        .cert .issuer {
-            color: #667eea;
-            font-weight: 600;
-        }
-
-        .cert .date {
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        footer p {
-            margin-bottom: 15px;
-        }
-
-        footer a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.3s ease;
-        }
-
-        footer a:hover {
-            opacity: 0.8;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5em;
-            }
-
-            section {
-                padding: 40px 30px;
-            }
-
-            h2 {
-                font-size: 2em;
-            }
-
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .skills-categories {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  /* ── FOOTER ── */
+  footer{background:var(--card);border-top:1px solid var(--border);text-align:center;padding:2rem;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+  footer span{color:var(--azure-light)}
+  .footer-logo{font-size:1rem;font-weight:700;color:var(--azure-bright);margin-bottom:.5rem}
+</style>
 </head>
 <body>
-    <header>
-        <div class="container hero">
-            <h1>Bhargava Devarakonda</h1>
-            <div class="title">DevOps Engineer | Cloud Infrastructure Specialist</div>
-            <div class="location">📍 Fairfax, VA (Open to Relocation)</div>
-            <p>DevOps Engineer with one year of experience focusing on Azure Infrastructure as Code (IaC) and automated cloud governance. Proven track record of architecting multi-region platforms for 35+ business teams and enforcing security requirements using Open Policy Agent (OPA) and Rego. Expert at designing high-reliability CI/CD pipelines that achieve 98% uptime and dramatically reduce speculative deployment errors.</p>
-            <div class="social-links">
-                <a href="mailto:bhargavatech99@gmail.com">Email</a>
-                <a href="https://www.linkedin.com/in/bhargava-deva/" target="_blank">LinkedIn</a>
-                <a href="https://github.com/BhargavaDeva" target="_blank">GitHub</a>
-            </div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-icon">BD</div>
+    <div class="logo-text">bhargava<span>.devarakonda</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="blueprint-grid"></div>
+  <div class="blueprint-grid2"></div>
+  <div class="orb-bottom"></div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow"><span class="eyebrow-dot"></span>Available for Cloud DevOps Roles</div>
+      <h1 class="hero-name">Bhargava<br><em>Devarakonda</em></h1>
+      <div class="hero-title">Cloud &amp; DevOps Engineer &nbsp;·&nbsp; Azure IaC &nbsp;·&nbsp; CI/CD Automation &nbsp;·&nbsp; Policy as Code</div>
+
+      <div class="work-auth">⚡ F-1 STEM OPT — Work Authorized &nbsp;|&nbsp; H-1B Sponsorship Required</div>
+
+      <p class="hero-desc">Cloud &amp; DevOps Engineer with <strong>2+ years of experience</strong> in Azure Infrastructure as Code, CI/CD pipeline automation, and cloud governance. Supporting <strong>35+ global business teams</strong> across enterprise Azure environments using Terraform, Azure DevOps, and OPA/Rego.</p>
+
+      <div class="stat-row">
+        <div class="stat"><div class="stat-num">35+</div><div class="stat-label">Global Teams<br>Supported</div></div>
+        <div class="stat"><div class="stat-num">96%</div><div class="stat-label">Pipeline<br>Reliability</div></div>
+        <div class="stat"><div class="stat-num">60+</div><div class="stat-label">OPA Policies<br>Written</div></div>
+        <div class="stat"><div class="stat-num">9</div><div class="stat-label">Env Tiers<br>Provisioned</div></div>
+        <div class="stat"><div class="stat-num">5</div><div class="stat-label">Countries<br>Multi-region</div></div>
+      </div>
+
+      <div class="btn-row">
+        <a href="mailto:bhargavatech99@gmail.com" class="btn btn-primary">✉ Contact Me</a>
+        <a href="https://linkedin.com/in/bhargava-deva" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
+        <a href="https://github.com" target="_blank" class="btn btn-ghost">GitHub ↗</a>
+      </div>
+
+      <div class="pipeline-wrap">
+        <div class="pipeline-label">Azure DevOps — IaC Pipeline</div>
+        <div class="pipeline">
+          <div class="pipe-step done">✓ PR Raised</div><div class="pipe-arrow">→</div>
+          <div class="pipe-step done">✓ OPA Validate</div><div class="pipe-arrow">→</div>
+          <div class="pipe-step done">✓ tf plan</div><div class="pipe-arrow">→</div>
+          <div class="pipe-step active">⟳ Speculative Run</div><div class="pipe-arrow">→</div>
+          <div class="pipe-step pending">◌ Approval Gate</div><div class="pipe-arrow">→</div>
+          <div class="pipe-step pending">◌ tf apply</div><div class="pipe-arrow">→</div>
+          <div class="pipe-step pending">◌ Post-Deploy</div>
         </div>
-    </header>
+      </div>
 
-    <main class="container">
-        <!-- Professional Experience -->
-        <section id="experience">
-            <h2>Professional Experience</h2>
-            
-            <div class="job">
-                <h3>DevOps Engineer (IaC) - Contract Role</h3>
-                <div class="company">HCLTech</div>
-                <div class="date">June 2025 - Present</div>
-                <ul>
-                    <li>Architected and deployed a multi-region IaC platform supporting 35+ internal teams across 5 countries, automating Azure subscription provisioning across 9 environment tiers with zero-downtime migrations.</li>
-                    <li>Designed enterprise-grade CI/CD pipelines in Azure DevOps, automating client onboarding and achieving 99% pipeline reliability across speculative deployments.</li>
-                    <li>Implemented OPA and Rego-based governance frameworks enforcing policy-driven compliance across all IaC deployments in a multi-tenant Azure environment.</li>
-                    <li>Delivered technical enablement to 35+ client teams, collaborated with Cloud Engineers and Architects, and provided Terraform module updates to accelerate cloud adoption.</li>
-                </ul>
-            </div>
+      <div class="bottom-chips">
+        <span class="chip az">📍 Fairfax, VA · Open to Relocation</span>
+        <span class="chip o">⚡ F-1 STEM OPT</span>
+        <span class="chip g">🎓 M.S. GPA 3.90</span>
+        <span class="chip p">📜 AZ-104 In Progress</span>
+      </div>
+    </div>
 
-            <div class="job">
-                <h3>IaC Platform Engineering Intern, Global IT Engineering</h3>
-                <div class="company">Gallagher</div>
-                <div class="date">June 2024 - November 2024</div>
-                <ul>
-                    <li>Developed and tested 60+ security policies using OPA and Rego, ensuring 100% compliance with CIS and NIST guidelines for internal teams deploying to Azure DevOps.</li>
-                    <li>Designed end-to-end functional and unit tests for critical Azure resources (Data Factory, Synapse, Container Apps) in Terraform and Rego, improving deployment reliability.</li>
-                    <li>Implemented speculative execution pipelines and modularized Terraform code, achieving an estimated 98% reduction in pipeline deployment errors.</li>
-                    <li>Collaborated with Cloud Engineers and Architects to implement Policy as Code frameworks, establishing enterprise cloud security standards.</li>
-                    <li>Enhanced CI/CD pipeline efficiency through Git version control, pull request optimization, and rigorous testing in Azure DevOps.</li>
-                </ul>
-            </div>
+    <!-- Azure Services Side Card -->
+    <div class="hero-right">
+      <div class="services-card">
+        <div class="services-title">Azure Stack</div>
+        <div class="svc-item">
+          <div class="svc-icon" style="background:rgba(0,120,212,.15)">🏗</div>
+          <div><div class="svc-name">Terraform / HCL</div><div class="svc-sub">Infrastructure as Code</div></div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-icon" style="background:rgba(0,120,212,.15)">⚙</div>
+          <div><div class="svc-name">Azure DevOps</div><div class="svc-sub">CI/CD Pipelines · YAML</div></div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-icon" style="background:rgba(129,140,248,.12)">🔒</div>
+          <div><div class="svc-name">OPA / Rego</div><div class="svc-sub">Policy as Code</div></div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-icon" style="background:rgba(0,120,212,.15)">☁</div>
+          <div><div class="svc-name">Microsoft Azure</div><div class="svc-sub">Compute · Network · IAM</div></div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-icon" style="background:rgba(34,197,94,.1)">🛡</div>
+          <div><div class="svc-name">Azure Policy</div><div class="svc-sub">CIS · NIST SP 800-53</div></div>
+        </div>
+        <div class="svc-item">
+          <div class="svc-icon" style="background:rgba(245,158,11,.1)">🐳</div>
+          <div><div class="svc-name">Docker · Git</div><div class="svc-sub">Containers · Version Control</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div class="job">
-                <h3>Analyst Programmer</h3>
-                <div class="company">Ramco Systems</div>
-                <div class="date">July 2021 - December 2022</div>
-                <ul>
-                    <li>Developed aviation ERP software screens and optimized SQL stored procedures, improving query performance</li>
-                    <li>Utilized Jenkins for CI/CD deployments, gaining foundational DevOps experience</li>
-                    <li>Resolved client issues within 24-48 hour SLAs through Agile/Scrum methodology using JIRA</li>
-                    <li>Collaborated with 8-member development team, supporting multiple aviation clients</li>
-                </ul>
-            </div>
-        </section>
+<!-- EXPERIENCE -->
+<section class="content" id="experience">
+  <div class="section-header">
+    <div class="section-tag">Work History</div>
+    <h2>Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-list">
 
-        <!-- Technical Skills -->
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            
-            <div class="skills-visual">
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Azure Cloud & DevOps</span>
-                        <span class="skill-level">1 Year 2 Months</span>
-                    </div>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" style="width: 85%"></div>
-                    </div>
-                </div>
+    <!-- HCLTech -->
+    <div class="exp-card current">
+      <div class="exp-role">Cloud DevOps Engineer — Contract</div>
+      <div class="exp-sub">HCLTech America · IaC Managed Services Team · Remote, Fairfax VA</div>
+      <div class="exp-meta">
+        <span class="exp-company">HCLTech</span>
+        <span class="exp-date">Jun 2025 – Present</span>
+        <span class="badge-current">● CURRENT</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Provisioned a <strong>multi-region Azure IaC platform</strong> using Terraform — dedicated subscriptions, resource groups, and <strong>9 environment tiers</strong> for <strong>35+ global business teams</strong> across US, UK, South America, Australia, and India:
+          <div class="env-tiers">
+            <span class="tier">DEV</span><span class="tier">TEST</span><span class="tier">UAT</span><span class="tier">QA</span><span class="tier">DEVINT</span><span class="tier">STAGE</span><span class="tier">PRE-PROD</span><span class="tier">PROD</span><span class="tier">DR</span>
+          </div>
+        </li>
+        <li>Monitored and maintained enterprise-grade <strong>CI/CD pipelines in Azure DevOps</strong>, automating client onboarding and provisioning workflows — achieving <strong>96% pipeline reliability</strong> across speculative plans and continuous deployments.</li>
+        <li>Supported <strong>OPA/Rego Policy as Code governance</strong> across multi-tenant Azure environments — resolving compliance failures, whitelisting resources, and implementing policy exceptions to ensure uninterrupted IaC deployments.</li>
+        <li>Maintained and enhanced <strong>Terraform modules</strong> (Web Apps, Cosmos DB, Storage Accounts) for 35+ client teams — serving as the <strong>primary IaC support contact</strong> for module errors and deployment issues.</li>
+        <li>Maintained <strong>operational runbooks</strong> for IaC platform processes, ensuring standardized documentation across multi-region Azure environments.</li>
+        <li>Delivered <strong>IaC platform demos, onboarding sessions, and cadence presentations</strong> to client teams migrating from on-premises to Azure cloud.</li>
+      </ul>
+      <div class="metric-chips">
+        <span class="mc az">Azure DevOps</span><span class="mc az">Terraform</span><span class="mc az">OPA / Rego</span>
+        <span class="mc g">Multi-region IaC</span><span class="mc g">96% Reliability</span>
+        <span class="mc p">Policy as Code</span><span class="mc p">Runbooks</span>
+        <span class="mc o">Cosmos DB · Web Apps · Storage</span>
+      </div>
+    </div>
 
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Terraform & Infrastructure as Code</span>
-                        <span class="skill-level">1 Year 2 Months</span>
-                    </div>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" style="width: 85%"></div>
-                    </div>
-                </div>
+    <!-- Gallagher -->
+    <div class="exp-card intern">
+      <div class="exp-role">IaC Platform Engineering Intern</div>
+      <div class="exp-sub">Arthur J. Gallagher &amp; Co · Gallagher Technical Services — IaC Client Support · Remote, Fairfax VA</div>
+      <div class="exp-meta">
+        <span class="exp-company">Gallagher</span>
+        <span class="exp-date">Jun 2024 – Nov 2024</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Developed <strong>60+ OPA/Rego security policies and unit tests</strong> for Azure resources (Data Factory, Synapse, Container Apps) — reducing IaC deployment errors by an estimated <strong>98%</strong>.</li>
+        <li>Wrote end-to-end <strong>Terraform functional tests</strong> (init, validate, plan) for 60+ Azure resources, ensuring <strong>CIS Benchmark and NIST SP 800-53 compliance</strong> before every release.</li>
+        <li>Managed the <strong>full PR lifecycle in Azure DevOps</strong> — local policy testing in VSCode, Git push, PR creation, Architect/Engineer approvals, and speculative plan monitoring.</li>
+        <li>Updated and validated <strong>Terraform module provider versions</strong> — writing <code style="color:var(--azure-bright);font-size:.81rem">go.mod</code> / <code style="color:var(--azure-bright);font-size:.81rem">go.sum</code> files and authoring <strong>Go-based unit and functional tests</strong> to resolve post-update module errors.</li>
+        <li>Collaborated with Cloud Engineers and Architects to implement <strong>Policy as Code frameworks</strong>, establishing enterprise cloud security standards across Azure DevOps pipelines.</li>
+      </ul>
+      <div class="metric-chips">
+        <span class="mc az">Terraform</span><span class="mc az">Azure DevOps</span><span class="mc az">Go Tests</span>
+        <span class="mc g">CIS / NIST SP 800-53</span><span class="mc g">98% Error Reduction</span>
+        <span class="mc p">OPA / Rego</span><span class="mc p">Data Factory · Synapse</span>
+      </div>
+    </div>
 
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Policy as Code (OPA, Rego, Azure Policy)</span>
-                        <span class="skill-level">1 Year 2 Months</span>
-                    </div>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" style="width: 80%"></div>
-                    </div>
-                </div>
+    <!-- Ramco -->
+    <div class="exp-card early">
+      <div class="exp-role">Analyst Programmer</div>
+      <div class="exp-sub">Ramco Systems · Base Aviation Team · Chennai, India</div>
+      <div class="exp-meta">
+        <span class="exp-company">Ramco Systems</span>
+        <span class="exp-date">Jul 2021 – Dec 2022</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Developed UI screens for the <strong>Ramco Aviation Software platform</strong> (MRO, Flight Operations, Fleet Management) through Agile sprint cycles.</li>
+        <li>Designed and optimized <strong>SQL stored procedures</strong> supporting backend aviation workflows, improving data retrieval and application reliability.</li>
+        <li>Managed full delivery lifecycle including PR reviews, Dev/UAT testing, and <strong>production deployments via GitLab and Jenkins CI/CD pipelines</strong>.</li>
+        <li>Resolved aviation software issues for global airline clients within <strong>24–48 hour SLAs</strong> using Agile/Scrum and JIRA.</li>
+      </ul>
+      <div class="metric-chips">
+        <span class="mc az">Jenkins</span><span class="mc az">GitLab</span><span class="mc az">SQL</span>
+        <span class="mc p">Agile / Scrum</span><span class="mc p">MRO · Aviation ERP</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">ServiceNow & BMC Helix ITSM (Incident & Service Request Management)</span>
-                        <span class="skill-level">7 Months</span>
-                    </div>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" style="width: 55%"></div>
-                    </div>
-                </div>
+<!-- EDUCATION & CERTS -->
+<section class="content" id="education">
+  <div class="section-header">
+    <div class="section-tag">Credentials</div>
+    <h2>Education &amp; Certifications</h2>
+    <div class="section-line"></div>
+  </div>
 
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">CI/CD Pipelines & Automation</span>
-                        <span class="skill-level">1 Year 2 Months</span>
-                    </div>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" style="width: 75%"></div>
-                    </div>
-                </div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-degree">M.S. Data Analytics Engineering</div>
+      <div class="edu-school">George Mason University</div>
+      <div class="edu-meta">Jan 2023 – Dec 2024 · Fairfax, VA</div>
+      <div class="edu-gpa">⭐ GPA: 3.90 / 4.00</div>
+      <div class="edu-courses">Relevant: <span>Big Data Engineering, Natural Language Processing</span></div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">M.Tech (5-Year Integrated), Software Engineering</div>
+      <div class="edu-school">Vellore Institute of Technology</div>
+      <div class="edu-meta">Jul 2016 – Jun 2021 · India</div>
+      <div class="edu-courses">Relevant: <span>Cloud Computing, Computer Networks, Artificial Intelligence, SDLC</span></div>
+    </div>
+  </div>
 
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Git & Version Control</span>
-                        <span class="skill-level">2+ years</span>
-                    </div>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" style="width: 90%"></div>
-                    </div>
-                </div>
+  <div class="cert-list">
+    <div class="cert-item">
+      <div>
+        <div class="cert-name">Microsoft Certified: Azure Administrator Associate (AZ-104)</div>
+        <div class="cert-issuer">Microsoft</div>
+      </div>
+      <span class="cert-status wip">⟳ In Progress</span>
+    </div>
+    <div class="cert-item">
+      <div>
+        <div class="cert-name">Google AI Essentials</div>
+        <div class="cert-issuer">Coursera × Google · April 2025</div>
+      </div>
+      <span class="cert-status done">✓ Completed</span>
+    </div>
+  </div>
+</section>
 
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">SQL & Database Management</span>
-                        <span class="skill-level">1.5 years</span>
-                    </div>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" style="width: 70%"></div>
-                    </div>
-                </div>
-            </div>
+<footer>
+  <div class="footer-logo">BD</div>
+  <p>Bhargava Devarakonda &nbsp;·&nbsp; <span>bhargavatech99@gmail.com</span> &nbsp;·&nbsp; Fairfax, VA</p>
+  <p style="margin-top:.4rem;font-size:.63rem;margin-top:.5rem">© 2025 · Cloud DevOps Engineer · Open to Azure, SRE &amp; Platform Engineering Roles</p>
+</footer>
 
-            <div class="skills-categories">
-                <div class="skill-tag-group">
-                    <h3>Cloud Platforms</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Microsoft Azure</span>
-                        <span class="skill-tag">Compute</span>
-                        <span class="skill-tag">Storage</span>
-                        <span class="skill-tag">Networking</span>
-                        <span class="skill-tag">Resource Groups</span>
-                        <span class="skill-tag">Governance</span>
-                        <span class="skill-tag">Security</span>
-                    </div>
-                </div>
-
-                <div class="skill-tag-group">
-                    <h3>Infrastructure as Code</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Terraform</span>
-                        <span class="skill-tag">HCL</span>
-                        <span class="skill-tag">Terraform Modules</span>
-                        <span class="skill-tag">Terraform Providers</span>
-                        <span class="skill-tag">OPA</span>
-                        <span class="skill-tag">Rego</span>
-                    </div>
-                </div>
-
-                <div class="skill-tag-group">
-                    <h3>CI/CD & Automation</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Azure DevOps Pipelines</span>
-                        <span class="skill-tag">YAML Configurations</span>
-                        <span class="skill-tag">Agent Pools</span>
-                        <span class="skill-tag">Service Connections</span>
-                    </div>
-                </div>
-
-                <div class="skill-tag-group">
-                    <h3>Security & Compliance</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Azure Policy</span>
-                        <span class="skill-tag">CIS Benchmarks</span>
-                        <span class="skill-tag">NIST SP 800-53</span>
-                        <span class="skill-tag">Cloud Security Automation</span>
-                    </div>
-                </div>
-
-                <div class="skill-tag-group">
-                    <h3>ITSM Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">ServiceNow</span>
-                        <span class="skill-tag">BMC Helix</span>
-                        <span class="skill-tag">Incident Management</span>
-                        <span class="skill-tag">Service Request Management</span>
-                    </div>
-                </div>
-
-                <div class="skill-tag-group">
-                    <h3>Tools & Technologies</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Branching/PR Management</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Agile/Scrum</span>
-                    </div>
-                </div>
-
-                <div class="skill-tag-group">
-                    <h3>Programming & Scripting</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Bash Scripting</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education -->
-        <section id="education">
-            <h2>Education</h2>
-            <div class="education-item">
-                <h3>Master of Science in Data Analytics Engineering</h3>
-                <div class="school">George Mason University</div>
-                <div class="date">January 2023 - December 2024</div>
-                <div class="gpa">GPA: 3.90/4.00</div>
-            </div>
-            <div class="education-item">
-                <h3>Bachelor of Technology</h3>
-                <div class="school">Vellore Institute of Technology, India</div>
-                <div class="date">July 2016 - June 2021</div>
-                <div class="gpa">GPA: 3.08/4.00</div>
-            </div>
-        </section>
-
-        <!-- Certifications -->
-        <section id="certifications">
-            <h2>Certifications</h2>
-            <div class="cert">
-                <h3>Google AI Essentials</h3>
-                <div class="issuer">Google</div>
-                <div class="date">April 2025</div>
-            </div>
-            <div class="cert">
-                <h3>Azure Administrator Associate (AZ-104)</h3>
-                <div class="issuer">Microsoft</div>
-                <div class="date">Currently Pursuing</div>
-            </div>
-        </section>
-
-        <!-- Contact Me -->
-        <section id="contact">
-            <h2>Contact Me</h2>
-            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <a href="mailto:bhargavatech99@gmail.com" style="flex: 1; min-width: 250px; padding: 25px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 15px; border-left: 5px solid #667eea; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(10px)';this.style.boxShadow='0 10px 30px rgba(102,126,234,0.2)'" onmouseout="this.style.transform='translateX(0)';this.style.boxShadow='none'">
-                    <div style="font-size: 1.2em; color: #667eea; font-weight: 600; margin-bottom: 5px;">Email</div>
-                    <div style="color: #444;">bhargavatech99@gmail.com</div>
-                </a>
-                <a href="https://www.linkedin.com/in/bhargava-deva/" target="_blank" style="flex: 1; min-width: 250px; padding: 25px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 15px; border-left: 5px solid #667eea; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(10px)';this.style.boxShadow='0 10px 30px rgba(102,126,234,0.2)'" onmouseout="this.style.transform='translateX(0)';this.style.boxShadow='none'">
-                    <div style="font-size: 1.2em; color: #667eea; font-weight: 600; margin-bottom: 5px;">LinkedIn</div>
-                    <div style="color: #444;">linkedin.com/in/bhargava-deva</div>
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Bhargava Devarakonda. All rights reserved.</p>
-        <p><a href="mailto:bhargavatech99@gmail.com">bhargavatech99@gmail.com</a> | Fairfax, VA</p>
-    </footer>
-
-    <script>
-        // Animate skill bars on scroll
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const bars = entry.target.querySelectorAll('.skill-bar');
-                    bars.forEach(bar => {
-                        bar.style.width = bar.style.width;
-                    });
-                }
-            });
-        }, observerOptions);
-
-        const skillsSection = document.querySelector('#skills');
-        if (skillsSection) {
-            observer.observe(skillsSection);
-        }
-    </script>
 </body>
 </html>
